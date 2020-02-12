@@ -1,11 +1,11 @@
 # Site settings
-author: Ian  Bumatay
-title: 
+author: Ian B.
+title: Why did you decide to learn Software Engineering
 header-img: img/home-bg.png
 email: ianbumatay.09@gmail.com
-copyright_name: Ian  Bumatay
+copyright_name: Ian B.
 description: > # this means to ignore newlines until "baseurl:"
-  
+  First blog
 baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: 
 github_username:  ianbumatay
