@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Nested Hash Iteration"
-date:       2020-05-17 13:48:36 +0000
+date:       2020-05-17 09:48:37 -0400
 permalink:  nested_hash_iteration
 ---
 
@@ -9,7 +9,7 @@ permalink:  nested_hash_iteration
 contacts = {
 
     "Batman" => {
-        name: "John Wayne",
+        name: "Bruce  Wayne",
         email: "batman@dcuniverse",
         fav_ice_cream_flavor: ["strawberry", "mint"]
      },
