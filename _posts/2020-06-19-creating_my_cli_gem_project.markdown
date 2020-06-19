@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Creating my CLI Gem project  "
-date:       2020-06-19 17:01:27 +0000
+date:       2020-06-19 13:01:28 -0400
 permalink:  creating_my_cli_gem_project
 ---
 
