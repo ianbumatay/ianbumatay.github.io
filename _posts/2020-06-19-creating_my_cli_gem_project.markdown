@@ -46,10 +46,8 @@ bin directory:
   > run file or my executable file:
       where my shebang line is located #!/usr/bin/env ruby  (explicitly telling to execute Ruby)
       require_relative "../lib/environment” 
-
   
-	lib directory:
-        
+	lib directory:     
   > environment file. Where I require all my dependencies and classes. 
       this is the connection for my bin directory via run file and lib directory via environment file.
 
