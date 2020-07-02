@@ -6,23 +6,27 @@ permalink:  creating_my_cli_gem_project
 ---
 
 
-My first step is to look for an api (Application Programming Interface)   
- using HTTparty gem to get my data. and install  Type gem install httparty on your terminal to install and gem install  pry.(binding.pry) after istalling you need to require both gem.
+My first step is to look for an API (Application Programming Interface) installed  HTTparty gem to get my data. 
+ 
+*   install httparty on your terminal . 
+*   install  pry.(binding.pry)
+*    after istalling you need to require both gem.
+*    assign url = your API 
 
 ```
- require “httparty” 
- require “pry"
+     require “httparty” 
+     require “pry"
 
 
- url = "https://www.themealdb.com/api/json/v1/1/search.php?s”
-  response = HTTParty.get(url)
-   meals_array = response["meals"] 
+     url = "https://www.themealdb.com/api/json/v1/1/search.php?s”
+     response = HTTParty.get(url)
+     meals_array = response["meals"] 
  
  ```
 
-
- This line of code is where I set the response to a variable = meals_array and grabing the “meals” string
-  and iterate with #each. setting a binding.pry to get the data in the terminal.
+*  This line of code is where I set the response to a variable = meals_array 
+*   iterate with #each.
+*    setting a binding.pry to get the data in the terminal.
 		
  ```
  meals_array.each do |meal_hash| 
@@ -32,25 +36,22 @@ My first step is to look for an api (Application Programming Interface)
 ```
 		
 		
-Now its time to install Bundle gem, 
-in my terminal I type bundle gem meals, meals is the name of my model class. 
-This command creates a scaffold directory for my new gems.  
+Now its time to install a gem bundler.
 
-in my ‘Bin' directory I  created run/executable  file
+* in my terminal: 
+* $ bundle gem meals meals (meals is the name of my model class) 
+* This command creates a scaffold directory for my new gems.  
 
-Bin 
-  > run file where I require my environment file
+bin directory:
+  > run file or my executable file:
+      where my shebang line is located #!/usr/bin/env ruby  (explicitly telling to execute Ruby)
+      require_relative "../lib/environment” 
+
   
-```
-
-#!/usr/bin/env ruby  => this line of code is called shebang!(explicitly telling to execute Ruby)
-
-require_relative "../lib/environment” 
-
-
-```
-
-My Environment file. Where I require all my dependencies and classes. 
+	lib directory:
+        
+  > environment file. Where I require all my dependencies and classes. 
+      this is the connection for my bin directory via run file and lib directory via environment file.
 
 ```
 require_relative "./meals/version" 
@@ -64,69 +65,14 @@ require_relative "./cli.rb"
 
 
 ```
+and I created three Classes.
 
-and my Lib directory I created 3 files Cli.rb, Api.rb, Meals.rb
+*     Cli.rb or  Cli class my main point of communication with my user
 
-Lib 
- > cli.rb => My Cli class were I cummunicate with my user. all my input and output command should be in this class
- 
-```
-class Meals::Cli  
-   
-    def menu 
-        puts "----------------- Menu -----------------------"     
-        puts "Type: '1' to see the menu of International meals"  
-        puts "Type: '2' to exit the menu" 
-        puts "" 
-        puts "———————————————————————“
-    end
-ennd
-```
+*    Api.rb or   Api class where I consume the api or 
+	    get my data url="https://www.themealdb.com/api/json/v1/1/search.php?s
 
+*  Meals.rb => this is the model Class 
 
- > Api.rb =>
- >  My Api class
- >  where I consume the api or get my data( url="https://www.themealdb.com/api/json/v1/1/search.php?s”)
-
-```
-Class Meal::Api
-
- url = "https://www.themealdb.com/api/json/v1/1/search.php?s"
- response = HTTParty.get(url)
- meals_array = response["meals”]
-  
-end
-```
-
-
-> Meals.rb => is my  model class 
-
-```
-class Meals::TheMeals
-   
-     @@all = []
-		 
-     attr_accessor :name
-
-     def initialize(name)
-         @name = name
-         @@all << self
-     end 
-     
-     def self.all
-         @@all
-     end
- end 
-
-```
-
-Files below are automaticlly created by bundle gem 
-
-License
-Read me  
-Gem file
-Rakefile 
-Gemspec 
-Code of conduct 
 
 
