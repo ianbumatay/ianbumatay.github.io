@@ -5,7 +5,7 @@ date:       2020-08-18 13:46:16 -0400
 permalink:  quick_guide_in_creating_sinatra_application
 ---
 
-this is a quick guid in building your directory and files in my sinatra portfolio project.
+this is a quick guid in building  directory and files in my sinatra portfolio project.
 
  **what is sinatra **
 
