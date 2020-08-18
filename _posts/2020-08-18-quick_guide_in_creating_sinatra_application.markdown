@@ -5,7 +5,7 @@ date:       2020-08-18 13:46:16 -0400
 permalink:  quick_guide_in_creating_sinatra_application
 ---
 
-this is a quick guid in building your directory and files in your sinatra portfolio project.
+this is a quick guid in building your directory and files in my sinatra portfolio project.
 
  **what is sinatra **
 
@@ -22,7 +22,7 @@ First, make sure Sinatra is installed by running `gem install sinatra`  in your 
 
 **Using Corneal gem to generate my application**
 
-Corneal is created by a former Flatiron student named Brian Emory.  that build a Sinatra skeleton similar to running 
+Corneal is gem created by a former Flatiron student named Brian Emory.  that build a Sinatra skeleton similar to running 
 `rails new APP-NAME` in rails. 
 
 **To generate your app:** 
@@ -60,6 +60,7 @@ You can then start your server with shotgun: after running check localhost 9393 
   You can also generate an entire MVC structure complete with a migration file:
 
 	corneal scaffold NAME
+	
  
  ### Controllers < Sinatra: :Base
 
