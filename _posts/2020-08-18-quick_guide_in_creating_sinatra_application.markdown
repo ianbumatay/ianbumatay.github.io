@@ -49,9 +49,9 @@ You can then start your server with shotgun: after running check localhost 9393 
 
  run `$  rake db:create_migration NAME=create_bullitins ` to create table 
 
- after creating the table I run `rake db:migrate` this will create .schema the db: directory(database) 
+ after creating the table I run `rake db:migrate` this will create .schema the in db: directory(database) 
  
- **using corneal to generate migration.**
+**using corneal to generate migration.**
  
   You can generate a model and migration file:
 
@@ -76,9 +76,12 @@ You can then start your server with shotgun: after running check localhost 9393 
           
   `validates :title, :content,  presence: true  (validation) 
 	
-	### config.run   
+	### config.run    
+	
+	this is important to remember 
 	
  use Rack::MethodOverride
+ 
  use BullitinsController
  use UsersController
  run ApplicationController
@@ -96,11 +99,9 @@ set table attribute as password_digest:
 
 t.string :password_digest 
 
-in User_model  set macro:
+in User_model  set macro: has_secure_password 
 
-has_secure_password 
-
-drop in pry to test. 
+$ rake console to test
 
 
 ### sessions
@@ -115,8 +116,9 @@ enable :sessions
 end 
 ```
 				
-				
-				
+### validation  
+for more understanding on validation [guides](https://guides.rubyonrails.org/active_record_validations.html)
+
 			
   
 	
