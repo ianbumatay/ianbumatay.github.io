@@ -77,7 +77,7 @@ You can then start your server with shotgun: after running check localhost 9393 
           
   `validates :title, :content,  presence: true  (validation) 
 	
-	### config.run    
+ ** config.run    **
 	
 	this is important to remember 
 	
@@ -92,7 +92,8 @@ You can then start your server with shotgun: after running check localhost 9393 
  
   containes .erb files:  
 	
-### password security 
+	
+**	 password security **
 	
 install gem 'bcrypt' 
 	
@@ -104,8 +105,7 @@ in User_model  set macro: has_secure_password
 
 $ rake console to test
 
-
-### sessions
+** sessions**
 
 enable session in app/application_controller 
 
@@ -117,7 +117,7 @@ enable :sessions
 end 
 ```
 				
-### validation  
+** validation ** 
 for more understanding on validation [guides](https://guides.rubyonrails.org/active_record_validations.html)
 
 			
