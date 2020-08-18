@@ -18,7 +18,7 @@ A domain-specific language (DSL) is a computer language specialized to a particu
 First, make sure Sinatra is installed by running `gem install sinatra`  in your terminal. 
 
 
-### File and Directories
+** File and Directories**
 
 **Using Corneal gem to generate my application**
 
@@ -45,7 +45,7 @@ You can then start your server with shotgun: after running check localhost 9393 
 [corneal](https://github.com/thebrianemory/corneal) click to learn more about corneal gem.
 
 
-### Database
+** Database**
 
  run `$  rake db:create_migration NAME=create_bullitins ` to create table 
 
@@ -62,14 +62,14 @@ You can then start your server with shotgun: after running check localhost 9393 
 	corneal scaffold NAME
 	
  
- ### Controllers < Sinatra: :Base
+ **Controllers < Sinatra: :Base**
 
  application_controller < Sinatra: :Base 
 
  models_controller < application_controller 
 
 
- ### Models < ActiveRecord: :Base
+ **Models < ActiveRecord: :Base**
   
  `class Bullitin belongs_to :user`  (association)
 					
@@ -77,20 +77,20 @@ You can then start your server with shotgun: after running check localhost 9393 
           
   `validates :title, :content,  presence: true  (validation) 
 	
+
+** Views **
+ 
+ containes .erb files:   
+	
  ** config.run    **
 	
-	this is important to remember 
+this is important to remember 
 	
  use Rack::MethodOverride
- 
  use BullitinsController
  use UsersController
  run ApplicationController
 
-
- ### Views 
- 
-  containes .erb files:  
 	
 	
 **	 password security **
