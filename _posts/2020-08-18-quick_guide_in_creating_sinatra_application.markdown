@@ -1,7 +1,7 @@
 ---
 layout: post
-title:      "quick guide in creating sinatra application "
-date:       2020-08-18 17:46:15 +0000
+title:      "Quick guide in creating sinatra application "
+date:       2020-08-18 13:46:16 -0400
 permalink:  quick_guide_in_creating_sinatra_application
 ---
 
@@ -27,19 +27,20 @@ Corneal is created by a former Flatiron student named Brian Emory.  that build a
 
 **To generate your app:** 
 
-Install the gem
+ Install the gem
 
 `corneal new APP-NAME`
 
-After Corneal is done generating your app, run bundle install from your app's directory:
+ After Corneal is done generating your app, run bundle install from your app's directory:
 
-       `$ cd APP-NAME`
+ `$ cd APP-NAME`
+			 
 
-        `$ bundle install`
+ `$ bundle install`
 
 You can then start your server with shotgun: after running check localhost 9393 in your browser.
 
-        `$ shotgun` 
+   `$ shotgun` 
 
 [corneal](https://github.com/thebrianemory/corneal) click to learn more about corneal gem.
 
@@ -52,35 +53,67 @@ You can then start your server with shotgun: after running check localhost 9393 
  
  **using corneal to generate migration.**
  
-     You can generate a model and migration file:
+  You can generate a model and migration file:
 
-					   corneal model NAME
+  corneal model NAME
 
-     You can also generate an entire MVC structure complete with a migration file:
+  You can also generate an entire MVC structure complete with a migration file:
 
-				     corneal scaffold NAME
-
- 
- 
+	corneal scaffold NAME
  
  ### Controllers < Sinatra: :Base
 
-		application_controller < Sinatra: :Base 
+ application_controller < Sinatra: :Base 
 
-		models_controller < application_controller 
+ models_controller < application_controller 
 
 
  ### Models < ActiveRecord: :Base
   
-         `class Bullitin belongs_to :user`  (association)
+ `class Bullitin belongs_to :user`  (association)
 					
-		     `class User has_many: bullitins` (association)
+ `class User has_many: bullitins` (association)
           
-	       `validates :title, :content,  presence: true  (validation)
+  `validates :title, :content,  presence: true  (validation) 
+	
+	### config.run   
+	
+ use Rack::MethodOverride
+ use BullitinsController
+ use UsersController
+ run ApplicationController
+
 
  ### Views 
  
-        containes .erb files: 
+  containes .erb files:  
+	
+### password security 
+	
+install gem 'bcrypt' 
+	
+set table attribute as password_digest:
+
+t.string :password_digest 
+
+in User_model  set macro:
+
+has_secure_password 
+
+drop in pry to test. 
+
+
+### sessions
+
+enable session in app/application_controller 
+
+```ruby
+configure do 
+
+enable :sessions 
+
+end 
+```
 				
 				
 				
