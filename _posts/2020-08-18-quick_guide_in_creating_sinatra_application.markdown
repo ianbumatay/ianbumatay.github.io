@@ -88,10 +88,15 @@ You can then start your server with shotgun: after running check localhost 9393 
 this is important to remember 
 
 ```ruby	
+
  use Rack::MethodOverride
+ 
  use BullitinsController
+ 
  use UsersController
+ 
  run ApplicationController 
+ 
  ```
 
 	
@@ -102,7 +107,7 @@ install gem 'bcrypt'
 	
 set table attribute as `password_digest`:
 
-t.string :password_digest 
+`t.string :password_digest` 
 
 in User_model  set macro: `has_secure_password `
 
@@ -114,15 +119,33 @@ $ rake console to test
 enable session in app/application_controller 
 
 ```ruby
-configure do 
 
+configure do
+    set :public_folder, 'public'
+    set :views, 'app/views'  
     enable :sessions 
+    set :session_secret, ENV['SESSION_SECRET']
+  end 
+ 
 
-end 
+ 
 ```
 				
-### validation 
-for more understanding on validation [guides](https://guides.rubyonrails.org/active_record_validations.html)
+### validation  
+
+```ruby
+
+class Bullitin < ActiveRecord::Base 
+    belongs_to :user 
+    validates :title, :content,  presence: true
+end 
+
+```
+
+
+for more understanding on validation [guides](https://guides.rubyonrails.org/active_record_validations.html) 
+
+Now we can start building Restful routes
 
 			
   
@@ -142,4 +165,4 @@ for more understanding on validation [guides](https://guides.rubyonrails.org/act
 
 
 
-The content of your blog post goes here.
+
