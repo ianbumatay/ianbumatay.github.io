@@ -82,10 +82,11 @@ You can then start your server with shotgun: after running check localhost 9393 
  
  containes .erb files:   
  
+ 
 	
- ### config.run    
-	
-this is important to remember 
+ ### Config.ru file    
+ 
+	this is important to remember 
 
 ```ruby	
 
