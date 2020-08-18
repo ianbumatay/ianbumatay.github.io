@@ -45,7 +45,7 @@ You can then start your server with shotgun: after running check localhost 9393 
 [corneal](https://github.com/thebrianemory/corneal) click to learn more about corneal gem.
 
 
-** Database**
+### Database
 
  run `$  rake db:create_migration NAME=create_bullitins ` to create table 
 
@@ -64,9 +64,9 @@ You can then start your server with shotgun: after running check localhost 9393 
  
  **Controllers < Sinatra: :Base**
 
- application_controller < Sinatra: :Base 
+` application_controller < Sinatra: :Base `
 
- models_controller < application_controller 
+ `models_controller < application_controller` 
 
 
  **Models < ActiveRecord: :Base**
@@ -78,46 +78,50 @@ You can then start your server with shotgun: after running check localhost 9393 
   `validates :title, :content,  presence: true  (validation) 
 	
 
-** Views **
+### Views
  
  containes .erb files:   
+ 
 	
- ** config.run    **
+ ### config.run    
 	
 this is important to remember 
-	
+
+```ruby	
  use Rack::MethodOverride
  use BullitinsController
  use UsersController
- run ApplicationController
+ run ApplicationController 
+ ```
 
 	
 	
-**	 password security **
+### password security
 	
 install gem 'bcrypt' 
 	
-set table attribute as password_digest:
+set table attribute as `password_digest`:
 
 t.string :password_digest 
 
-in User_model  set macro: has_secure_password 
+in User_model  set macro: `has_secure_password `
 
 $ rake console to test
 
-** sessions**
+
+### sessions
 
 enable session in app/application_controller 
 
 ```ruby
 configure do 
 
-enable :sessions 
+    enable :sessions 
 
 end 
 ```
 				
-** validation ** 
+### validation 
 for more understanding on validation [guides](https://guides.rubyonrails.org/active_record_validations.html)
 
 			
