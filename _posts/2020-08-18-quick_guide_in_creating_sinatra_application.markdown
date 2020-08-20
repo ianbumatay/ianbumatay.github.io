@@ -5,7 +5,7 @@ date:       2020-08-18 13:46:16 -0400
 permalink:  quick_guide_in_creating_sinatra_application
 ---
 
-this is a quick guid in building  directory and files in my sinatra portfolio project.
+this is a quick guid in building  directory and files in sinatra application
 
  **what is sinatra **
 
@@ -49,17 +49,17 @@ You can then start your server with shotgun: after running check localhost 9393 
 
  run `$  rake db:create_migration NAME=create_bullitins ` to create table 
 
- after creating the table I run `rake db:migrate` this will create .schema the in db: directory(database) 
+ after creating the table  run `rake db:migrate` this will create .schema the in db: directory(database) 
  
 **using corneal to generate migration.**
  
   You can generate a model and migration file:
 
-  corneal model NAME
+  `corneal model NAME`
 
   You can also generate an entire MVC structure complete with a migration file:
 
-	corneal scaffold NAME
+	`corneal scaffold NAME`
 	
  
  **Controllers < Sinatra: :Base**
@@ -86,11 +86,11 @@ You can then start your server with shotgun: after running check localhost 9393 
 	
  ### Config.ru file    
  
-	this is important to remember 
+	this is important to remember;  Mount your application to the server everytime I add Controller.
 
 ```ruby	
 
- use Rack::MethodOverride
+ use Rack::MethodOverride  #this allows us to use HTTP methods like puts/patch
  
  use BullitinsController
  
@@ -110,10 +110,22 @@ set table attribute as `password_digest`:
 
 `t.string :password_digest` 
 
-in User_model  set macro: `has_secure_password `
+in User_model  set macro: `has_secure_password ` 
 
-$ rake console to test
+We validate password match (user password from the form input == password in database(password_digest) 
+by using .authenticate method (method come from has_secure_password macro) 
 
+example: 
+
+```ruby 
+
+ post "/login" do 
+       @user = User.find_by(username: params[:username]) 
+        if @user && @user.authenticate(params[:password])
+          session[:user_id] = @user.id
+          redirect "/bulletins" 
+
+```
 
 ### sessions
 
@@ -121,24 +133,25 @@ enable session in app/application_controller
 
 ```ruby
 
-configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'  
+configure do 
     enable :sessions 
-    set :session_secret, ENV['SESSION_SECRET']
+    set :session_secret, ENV['SESSION_SECRET'] 
   end 
  
-
- 
 ```
+       
+
+				click the  [sinatra]( http://sinatrarb.com/intro) on how to set :session_secret ENV['SESSION_SECRET']
+  
 				
+  
 ### validation  
 
 ```ruby
 
 class Bullitin < ActiveRecord::Base 
     belongs_to :user 
-    validates :title, :content,  presence: true
+    validates :title, :content,  presence: true #making sure models have data.
 end 
 
 ```
