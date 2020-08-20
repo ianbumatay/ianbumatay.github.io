@@ -5,7 +5,7 @@ date:       2020-08-18 13:46:16 -0400
 permalink:  quick_guide_in_creating_sinatra_application
 ---
 
-this is a quick guid in building  directory and files in sinatra application
+this is a quick guid in building  directory, files, password protection, sessions and validation in sinatra application
 
  **what is sinatra **
 
@@ -78,15 +78,11 @@ You can then start your server with shotgun: after running check localhost 9393 
   `validates :title, :content,  presence: true  (validation) 
 	
 
-### Views
- 
- containes .erb files:   
- 
  
 	
  ### Config.ru file    
  
-	this is important to remember;  Mount your application to the server everytime I add Controller.
+	this is important to remember;  Mount your application to the server everytime you add Controller.
 
 ```ruby	
 
@@ -135,31 +131,46 @@ enable session in app/application_controller
 
 configure do 
     enable :sessions 
-    set :session_secret, ENV['SESSION_SECRET'] 
+    set :session_secret, ENV['SESSION_SECRET'] #some random string are stored in this variable
   end 
  
 ```
        
 
-				click the  [sinatra]( http://sinatrarb.com/intro) on how to set :session_secret ENV['SESSION_SECRET']
+			click the  [sinatra]( http://sinatrarb.com/intro)  for more understanding on how to set up session_secret, 
   
 				
   
-### validation  
+### validation
 
 ```ruby
 
-class Bullitin < ActiveRecord::Base 
-    belongs_to :user 
-    validates :title, :content,  presence: true #making sure models have data.
+class User < ActiveRecord::Base 
+    has_many  :posts
+    validates :username, :email, :password, :presence: true  #making sure models have data.
 end 
 
-```
+``` 
+
+or. 
+
+```ruby
+post '/signup' do 
+
+        if params[:username].empty? || params[:email].empty? || params[:password].empty?
+           erb :'users/signup'
+        else
+            user = User.create(params)
+            session[:user_id] = user.id
+            redirect '/posts'
+        end 
+    end 
+		```
 
 
-for more understanding on validation [guides](https://guides.rubyonrails.org/active_record_validations.html) 
+for more understanding about validation and to see more validation methods [guides](https://guides.rubyonrails.org/active_record_validations.html) 
 
-Now we can start building Restful routes
+Now we can start building Restful routes 
 
 			
   
