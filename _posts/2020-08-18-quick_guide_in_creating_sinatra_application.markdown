@@ -5,7 +5,7 @@ date:       2020-08-18 13:46:16 -0400
 permalink:  quick_guide_in_creating_sinatra_application
 ---
 
-this is a quick guid in building  directory, files, password protection, sessions and validation in sinatra application
+this is a quick guide in building  directory, files, password protection, sessions and validation in sinatra application
 
  **what is sinatra **
 
