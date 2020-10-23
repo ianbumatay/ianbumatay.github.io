@@ -7,15 +7,54 @@ permalink:  my_first_month
 
 my Rails Portfolio Project Key Concepts
 
-  welcome to my rails portfolio project summary, 	I call it free board the concept is to build an online bulletin board. 
+  welcome to my rails portfolio project summary,  the concept is to build an online bulletin board. 
 	bulletin board is a surface(board)  intended for the posting of public messages, for example, to advertise items wanted       or for sale, announce events, or provide information.  
 	
+after creating Crud actions for class model Board and Bulletin and created a Users sign up and log in, my first question is how can I associate Users and Boards and how can I add Bulletins into the Board??  
 
-after creating Crud action for my Board and Bulletins, my first question is how can I add bulletins into the board?? 
+looking at my association: `Board belongs_to :user and User has_many :boards` 
+
+```
+class Board < ApplicationRecord 
+    belongs_to :user
+    has_many :bulletins, dependent: :destroy
+    has_many :users, through: :bulletins
+    validates :title, presence: true 
+	end
+``` 
+
+```
+class Bulletin < ApplicationRecord
+    belongs_to :user 
+    belongs_to :board 
+end
+``` 
+
+```
+class User < ApplicationRecord 
+    has_many :boards
+    has_many :bulletins, dependent: :destroy
+    has_many :bulletin_boards, through: :bulletins 
+ end
+```
+
+**connecting users and board** 
+
+`User` has_many :boards, through: :bulletins and `Board` has_many users, through: :bulletins
+
+def current_user
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+ end
+  
+
+
+
+
+**adding bulletins to the board**
 
 in my association, boards has_many  :bulletins and   bulletins belongs_to  : board  
 
-now I can say that` Board` is a parent to` Bulletin`
+now I can say that` Board` is a parent of` Bulletin`
 
  I can create a nested routes. and a link_to  
 
@@ -29,7 +68,7 @@ resources :boards do
 
 *board index.html.erb*
 
- <p> <%= link_to "Create New Bulletins", new_board_bulletin_path(board)%> </p>   
+ `<p> <%= link_to "Create New Bulletins", new_board_bulletin_path(board)%> </p> `  
  
  adding :board_id to bulletin params and finding a nested board and create bulletins for that board  or creating a new bulletins.
  
@@ -56,6 +95,8 @@ Views
 
 *view/bulletins/new.html.erb*  
 
+`if` nested create nested bulletins for this board `else` create unnested bulletins
+
 ```
    <%  if board %>
      <%=  "New Bulletins for #{board.title}" %>
@@ -64,14 +105,16 @@ Views
      <% end %>
 
 ```
-if nested create nested bulletins for this board else create unnested bulletins
+
 
 ```
 <%= form_for ([@board, @bulletin]) do |f| %>
 
   <% if !@bulletin.board %> 
+	
   <%= f.label :board %>
   <%= f.collection_select :board_id, Board.all, :id, :title %>
+	
   <% else %>
   <%= f.hidden_field :board_id %> 
    <% end %>
