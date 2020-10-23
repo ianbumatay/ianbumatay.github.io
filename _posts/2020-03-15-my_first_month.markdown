@@ -1,17 +1,48 @@
 ---
 layout: post
-title:      "My first month "
+title:      "Bulletins and Boards ####my Rails Portfolio Project "
 date:       2020-03-15 23:40:46 -0400
 permalink:  my_first_month
 ---
 
 
-***if I could compare my first month of  learning software engineer to a boxing match. My first month would be the first of twelve rounds. During the first round I have full of energy and optism untill I get punch in the face. Boom! Welcome to your FIRST MILE a two weeks of learning Procedural Ruby. Ting ting ting!  Deadline is coming up! Stress receptors pumping up, anxiety lingering my ears. I almost got knocked out
+  welcome to my rails portfolio project summary, 	I call it free board the concept is to build an online bulletin board. 
+	bulletin board is  is a surface intended for the posting of public messages, for example, to advertise items wanted or for     sale, announce events, or provide information. 
+	
+	
+	#### Generate migration for my class models User, Board, Bulletins 
+	
+	rails generate <name of generator> <options> --no-test-framework 
+	
+	--no-test-framework is a flag that tells the generator not to create any tests for the newly-generated models, controllers, etc.
 
-**And now  I am in my second month I’m getting beaten up again. With  my first project coming up and un finished labs pilling up I am on the same situation again.. But the crazy thing in all of these is  the harder it gets and the more I learn about programming the more I fall in love with it. I know there going to be more time like this and its gonna get more harder but  if you "Choose a Job You Love, and You Will Never Have To Work a Day in Your Life" 
-***
 
 
+#### setting up associations 
+
+```
+class User < ApplicationRecord 
+    has_many :boards
+    has_many :bulletins, dependent: :destroy
+    has_many :bulletin_boards, through: :bulletins 
+    has_secure_password 
+    validates :username, :email, presence: true, uniqueness: true  
+end
+``` 
+```
+class Bulletin < ApplicationRecord
+    belongs_to :user 
+    belongs_to :board 
+ end
+```
+```
+class Board < ApplicationRecord 
+    belongs_to :user
+    has_many :bulletins, dependent: :destroy
+    has_many :users, through: :bulletins
+    validates :title, presence: true 
+end
+```
 
 
 
