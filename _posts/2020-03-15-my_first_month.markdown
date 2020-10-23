@@ -1,24 +1,26 @@
 ---
 layout: post
-title:      "Bulletins and Boards ####my Rails Portfolio Project "
+title:      "Bulletins and Boards "
 date:       2020-03-15 23:40:46 -0400
 permalink:  my_first_month
 ---
 
+my Rails Portfolio Project 
 
   welcome to my rails portfolio project summary, 	I call it free board the concept is to build an online bulletin board. 
 	bulletin board is  is a surface intended for the posting of public messages, for example, to advertise items wanted or for     sale, announce events, or provide information. 
 	
+#### Generate migration for my class models User, Board, Bulletins 
 	
-	#### Generate migration for my class models User, Board, Bulletins 
-	
-	rails generate <name of generator> <options> --no-test-framework 
+
+
+```rails generate <name of generator> <options> --no-test-framework 
 	
 	--no-test-framework is a flag that tells the generator not to create any tests for the newly-generated models, controllers, etc.
 
+```
 
-
-#### setting up associations 
+#### Associations 
 
 ```
 class User < ApplicationRecord 
@@ -42,7 +44,12 @@ class Board < ApplicationRecord
     has_many :users, through: :bulletins
     validates :title, presence: true 
 end
-```
+``` 
+
+
+#### 
+
+
 
 
 
