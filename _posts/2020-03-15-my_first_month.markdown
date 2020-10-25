@@ -5,7 +5,7 @@ date:       2020-03-15 23:40:46 -0400
 permalink:  my_first_month
 ---
 
-my Rails Portfolio Project Key Concepts
+my Rails Portfolio Project
 
   welcome to my rails portfolio project summary,  the concept is to build an online bulletin board. 
 	bulletin board is a surface(board)  intended for the posting of public messages, for example, to advertise items wanted       or for sale, announce events, or provide information.  
@@ -40,23 +40,49 @@ class User < ApplicationRecord
 
 **connecting users and board** 
 
-`User` has_many :boards, through: :bulletins and `Board` has_many users, through: :bulletins
+`User has_many :boards, through: :bulletins` and `Board has_many users, through: :bulletins` 
 
+in my application controller I define a method called `current_user` this method will allow me to build associations with the user upon creation of a new object.
+
+*app/controllers/applicationcotrller.rb*
+
+```
 def current_user
       @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
  end
+```
   
+	Now in my board controller;
+
+*app/controllers/ boardscontroller.rb*
 
 
+```
+def new 
+      @board = Board.new
+    end 
 
+    def create 
+      @board = 
+      @board = current_user.boards.build(board_params)
+
+      if @board.save 
+        redirect_to board_path(@board)
+      else 
+        render :new 
+      end
+    end
+
+```
+Now I can create a new board object that is associated with the current user.
 
 **adding bulletins to the board**
 
 in my association, boards has_many  :bulletins and   bulletins belongs_to  : board  
 
-now I can say that` Board` is a parent of` Bulletin`
+now I can say that` Board` is a parent of` Bulletin`. I can create a nested routes. 
 
- I can create a nested routes. and a link_to  
+and a link_to for more easier navigation in my application
 
 *config/routes*
 
@@ -70,7 +96,9 @@ resources :boards do
 
  `<p> <%= link_to "Create New Bulletins", new_board_bulletin_path(board)%> </p> `  
  
- adding :board_id to bulletin params and finding a nested board and create bulletins for that board  or creating a new bulletins.
+the code below tells us: ` if `board is nested look for board_id in the params `else` create a new bulletins associated with the current_user. 
+
+and add `board_id` to` bulletin_params `
  
 *app/controllers/bulletincontroller.rb*
  
@@ -94,6 +122,8 @@ end
 Views 
 
 *view/bulletins/new.html.erb*  
+
+Header for my new form to support the conditional in my new action
 
 `if` nested create nested bulletins for this board `else` create unnested bulletins
 
@@ -127,9 +157,8 @@ Views
 <% end %>
 ```
 
-
-
-
+Setting up my associations and connecting all my models together is the most challenging part of my rails project. 
+now I can start adding validations and additional features  in my application. 
 
 
 
