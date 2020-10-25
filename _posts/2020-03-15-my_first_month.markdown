@@ -10,35 +10,12 @@ my Rails Portfolio Project
   welcome to my rails portfolio project summary,  the concept is to build an online bulletin board. 
 	bulletin board is a surface(board)  intended for the posting of public messages, for example, to advertise items wanted       or for sale, announce events, or provide information.  
 	
-after creating Crud actions for class model Board and Bulletin and created a Users sign up and log in, my first question is how can I associate Users and Boards and how can I add Bulletins into the Board??  
+After creating crud actions for class model Board and Bulletin and created a Users sign up and Log in, my first question is how can I associate Users and Boards and how can I add Bulletins into the Board??  
 
 looking at my association: `Board belongs_to :user and User has_many :boards` 
 
-```
-class Board < ApplicationRecord 
-    belongs_to :user
-    has_many :bulletins, dependent: :destroy
-    has_many :users, through: :bulletins
-    validates :title, presence: true 
-	end
-``` 
 
-```
-class Bulletin < ApplicationRecord
-    belongs_to :user 
-    belongs_to :board 
-end
-``` 
-
-```
-class User < ApplicationRecord 
-    has_many :boards
-    has_many :bulletins, dependent: :destroy
-    has_many :bulletin_boards, through: :bulletins 
- end
-```
-
-**connecting users and board** 
+**connecting user and boards** 
 
 `User has_many :boards, through: :bulletins` and `Board has_many users, through: :bulletins` 
 
@@ -51,17 +28,14 @@ def current_user
       @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
  end
 ```
+
   
-	Now in my board controller;
+Now in my board controller; I use the build method to create  boards that is associated with the current_user.
 
 *app/controllers/ boardscontroller.rb*
 
 
 ```
-def new 
-      @board = Board.new
-    end 
-
     def create 
       @board = 
       @board = current_user.boards.build(board_params)
@@ -74,9 +48,8 @@ def new
     end
 
 ```
-Now I can create a new board object that is associated with the current user.
 
-**adding bulletins to the board**
+**Now ist time add bulletins to the board**
 
 in my association, boards has_many  :bulletins and   bulletins belongs_to  : board  
 
