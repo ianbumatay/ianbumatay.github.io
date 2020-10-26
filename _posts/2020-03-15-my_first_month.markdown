@@ -14,10 +14,9 @@ After creating crud actions for class model Board and Bulletin and created a Use
 
 looking at my association: `Board belongs_to :user and User has_many :boards` 
 
+`Board has_many users, through: :bulletins `   &  `User has_many :boards, through: :bulletins` 
 
 **connecting user and boards** 
-
-`User has_many :boards, through: :bulletins` and `Board has_many users, through: :bulletins` 
 
 in my application controller I define a method called `current_user` this method will allow me to build associations with the user upon creation of a new object.
 
@@ -32,7 +31,7 @@ def current_user
   
 Now in my board controller; I use the build method to create  boards that is associated with the current_user.
 
-*app/controllers/ boardscontroller.rb*
+*app/controllers/ boards_controller.rb*
 
 
 ```
