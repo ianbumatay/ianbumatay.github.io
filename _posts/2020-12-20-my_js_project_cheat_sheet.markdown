@@ -5,12 +5,11 @@ date:       2020-12-20 21:14:48 -0500
 permalink:  my_js_project_cheat_sheet
 ---
 
-## Querying the DOM 
+### Querying the DOM 
 
 *    document.querySelector(selector)
 
 *    document.querySelectorAll( )
-
 
 
 *    document.getElementById( )  => This method provides the quickest access to a node, can only return one element.
@@ -19,12 +18,9 @@ permalink:  my_js_project_cheat_sheet
 
 *    document.getElementsByTagName( ) => Returns an HTMLCollection, You can iterate over with a simple for loop. 
 
+### Events 
 
-*    document.querySelector(selector)
-
-## Events 
-
-## Communicating with the Server
+### Communicating with the Server
 
 The content of your blog post goes here. 
 
