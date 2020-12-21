@@ -36,7 +36,7 @@ The Function SubmitForm
 Submitting The form with preventDefault() method. 
 Getting the Users Input value. by adding .value
 This fuction is responsible for getting the data and submmiting it to the backend.
-and converts it to jason object.
+and converts it to json object.
 
 
 ```
