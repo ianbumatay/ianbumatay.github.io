@@ -38,6 +38,8 @@ Getting the Users Input value. by adding .value
 This fuction is responsible for getting the data and submmiting it to the backend.
 and converts it to jason object.
 
+
+```
 function submitForm(){
 
     event.preventDefault()
@@ -58,17 +60,20 @@ function submitForm(){
     .then(postObj => renderPost(postObj.data))
 } 
 
+```
 
 renderPost function 
 is responsible for creating the HTML elements and showing the data in the browser. 
 the data that come from the user input.
 
+```
 function renderPost(post){
     const div = document.getElementById('postContainer')
     const pTag = document.createElement('p')
     pTag.innerText = post.attributes.name
     div.appendChild(pTag)
 } 
+```
 
 
 fetchPost function is responsible  for showing all the post that have been created. 
