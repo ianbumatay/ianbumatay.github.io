@@ -7,13 +7,14 @@ permalink:  my_js_project_cheat_sheet
 
 Understanding how we put the pieces together gives me solid uderstanding and preparedness in my upcoming javascript project.
 
-First thing first is to assign my backend ulr to a class variable.
+First thing first is to assign my backend url to a class variable.
 
 ```
  BACKEND_URL =  'http://localhost:3000/posts'
 ``` 
 
-I  wanted to grab the  <form> by querying the Id => *document.getElementById("form") *	
+I  wanted to grab the  <form> by querying the Id => ** *document.getElementById("form") *	
+**
 
 ```
      <form id="form">
